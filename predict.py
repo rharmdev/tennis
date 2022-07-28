@@ -3,9 +3,9 @@ import os
 from pull import pull_data
 POINTS = ('0', '15', '30', '40')
 
-p1 = pull_data("Stefanos Tsitsipas", 10)
+p1 = pull_data("Stefanos Tsitsipas", 8)
 
-p2 = pull_data("Casper Ruud", 10)
+p2 = pull_data("Casper Ruud", 5)
 
 p1['1st%'] = ((p1["1st%"])+(1-p2["1streturn"]))/2
 p1['2nd%'] = ((p1["2nd%"])+(1-p2["2ndreturn"]))/2
@@ -237,8 +237,10 @@ def tiebreak_p1():
   res = p1_who_wins_point()
   if res == 1:
     p1_score += 1
+    print(f"{p1_score}-{p2_score}")
   else:
     p2_score+=1
+    print(f"{p1_score}-{p2_score}")
   while True:
     if p1_score >= 7 and p2_score <= (p1_score-2) or p2_score >= 7 and p1_score <= (p2_score-2):
       # print(p1_score, p2_score)
@@ -256,8 +258,10 @@ def tiebreak_p1():
           
     if res == 2:
       p2_score += 1
+      print(f"{p1_score}-{p2_score}")
     else:
       p1_score+=1
+      print(f"{p1_score}-{p2_score}")
     if p1_score >= 7 and p2_score <= (p1_score-2) or p2_score >= 7 and p1_score <= (p2_score-2):
       # print(p1_score, p2_score)
       if p1_score > p2_score:
@@ -273,8 +277,10 @@ def tiebreak_p1():
           
     if res == 2:
       p2_score += 1
+      print(f"{p1_score}-{p2_score}")
     else:
       p1_score+=1
+      print(f"{p1_score}-{p2_score}")
     if p1_score >= 7 and p2_score <= (p1_score-2) or p2_score >= 7 and p1_score <= (p2_score-2):
       # print(p1_score, p2_score)
       if p1_score > p2_score:
@@ -289,8 +295,10 @@ def tiebreak_p1():
     res = p1_who_wins_point()
     if res == 1:
       p1_score += 1
+      print(f"{p1_score}-{p2_score}")
     else:
       p2_score+=1
+      print(f"{p1_score}-{p2_score}")
     if p1_score >= 7 and p2_score <= (p1_score-2) or p2_score >= 7 and p1_score <= (p2_score-2):
       # print(p1_score, p2_score)
       if p1_score > p2_score:
@@ -305,8 +313,10 @@ def tiebreak_p1():
     res = p1_who_wins_point()
     if res == 1:
       p1_score += 1
+      print(f"{p1_score}-{p2_score}")
     else:
       p2_score+=1
+      print(f"{p1_score}-{p2_score}")
 
 
 
@@ -319,8 +329,10 @@ def tiebreak_p2():
   res = p2_who_wins_point()
   if res == 1:
     p1_score += 1
+    print(f"{p1_score}-{p2_score}")
   else:
     p2_score+=1
+    print(f"{p1_score}-{p2_score}")
   while True:
     if p1_score >= 7 and p2_score <= (p1_score-2) or p2_score >= 7 and p1_score <= (p2_score-2):
       if p1_score > p2_score:
@@ -336,8 +348,10 @@ def tiebreak_p2():
           
     if res == 2:
       p2_score += 1
+      print(f"{p1_score}-{p2_score}")
     else:
       p1_score+=1
+      print(f"{p1_score}-{p2_score}")
     if p1_score >= 7 and p2_score <= (p1_score-2) or p2_score >= 7 and p1_score <= (p2_score-2):
       # print(p1_score, p2_score)
       if p1_score > p2_score:
@@ -353,8 +367,10 @@ def tiebreak_p2():
           
     if res == 2:
       p2_score += 1
+      print(f"{p1_score}-{p2_score}")
     else:
       p1_score+=1
+      print(f"{p1_score}-{p2_score}")
     if p1_score >= 7 and p2_score <= (p1_score-2) or p2_score >= 7 and p1_score <= (p2_score-2):
       # print(p1_score, p2_score)
       if p1_score > p2_score:
@@ -369,8 +385,10 @@ def tiebreak_p2():
     res = p2_who_wins_point()
     if res == 1:
       p1_score += 1
+      print(f"{p1_score}-{p2_score}")
     else:
       p2_score+=1
+      print(f"{p1_score}-{p2_score}")
     if p1_score >= 7 and p2_score <= (p1_score-2) or p2_score >= 7 and p1_score <= (p2_score-2):
       # print(p1_score, p2_score)
       if p1_score > p2_score:
@@ -385,8 +403,10 @@ def tiebreak_p2():
     res = p2_who_wins_point()
     if res == 1:
       p1_score += 1
+      print(f"{p1_score}-{p2_score}")
     else:
       p2_score+=1
+      print(f"{p1_score}-{p2_score}")
 
 def handicap_p1():
   
@@ -432,7 +452,7 @@ def set_check(res, server):
           
           p1_set_count +=1
           handicap_p1()
-          return True
+          return "TB"
         else:
           set_score = get_game_count()
           score.append(set_score)
@@ -442,7 +462,7 @@ def set_check(res, server):
           p2_set_count +=1 
           handicap_p2()
         
-          return True
+          return "TB"
       else:
         print(f"Tiebreak {p1['name']} serving first")
         res = tiebreak_p1()
@@ -453,7 +473,7 @@ def set_check(res, server):
           print(get_game_count())
           p1_set_count +=1
           handicap_p1()
-          return True
+          return "TB"
         else:
           set_score = get_game_count()
           score.append(set_score)
@@ -463,7 +483,7 @@ def set_check(res, server):
           p2_set_count +=1
           handicap_p2() 
         
-          return True
+          return "TB"
           
           
 
@@ -495,15 +515,23 @@ def set(server):
     for x in range(12):
       
       check=set_check(res, 2)
+      if check == "TB":
+        return 2
+        break
       if check:
         return 1
         break
+      
       res = p1_service_game()
       print(get_game_count())
       check = set_check(res, 1)
+      if check == "TB":
+        return 1
+        break
       if check:
         return 2
         break
+  
       res = p2_service_game()
       print(get_game_count())
   if server == 2:
@@ -511,15 +539,23 @@ def set(server):
     for x in range(12):
       
       check=set_check(res, 1)
+      if check == "TB":
+        return 1
+        break
       if check:
         return 2
         break
+      
       res = p2_service_game()
       print(get_game_count())
       check = set_check(res, 2)
+      if check == "TB":
+        return 2
+        break
       if check:
         return 1
         break
+      
       res = p1_service_game()
       print(get_game_count())
   
@@ -527,7 +563,7 @@ def set(server):
 threeset = 0
 
 
-for x in range(1000):
+for x in range(5000):
 
 
   p1_set_count = 0

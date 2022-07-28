@@ -6,10 +6,10 @@ def pull_data(player, opp_rank):
     df = pd.read_csv("atp.csv")
     df_chall = pd.read_csv("atp_chall.csv")
     df = df.append(df_chall)
-    # df2 = pd.read_csv("atp_2.csv")
-    # df_chall_2 = pd.read_csv("atp_2_chall.csv")
-    # df = df.append(df_chall_2)
-    # df = df.append(df2)
+    df2 = pd.read_csv("atp_2.csv")
+    df_chall_2 = pd.read_csv("atp_2_chall.csv")
+    df = df.append(df_chall_2)
+    df = df.append(df2)
     # df3 = pd.read_csv("atp_3.csv")
     # df = df.append(df3)
     # df4 = pd.read_csv("atp_4.csv")
@@ -26,8 +26,8 @@ def pull_data(player, opp_rank):
 
 
 
-    winnings = df.loc[(df['winner_name'] == f"{player}")  & (df['loser_rank'].apply(lambda x: conv(x)) == True) & (df["surface"] == "Hard") & (df["tourney_level"].str.contains("A|M|F"))]
-    losings = df.loc[(df['loser_name'] == f"{player}")  & (df['winner_rank'].apply(lambda x: conv(x)) == True) & (df["surface"] == "Hard") & (df["tourney_level"].str.contains("F|A|M"))]
+    winnings = df.loc[(df['winner_name'] == f"{player}")  & (df['loser_rank'].apply(lambda x: conv(x)) == True) & (df["surface"] == "Clay") & (df["tourney_level"].str.contains("A|M|F|G"))]
+    losings = df.loc[(df['loser_name'] == f"{player}")  & (df['winner_rank'].apply(lambda x: conv(x)) == True) & (df["surface"] == "Clay") & (df["tourney_level"].str.contains("A|M|F|G"))]
 
 
     ace_rate  = (winnings["w_ace"].sum() + losings["l_ace"].sum())/(winnings["w_svpt"].sum() + losings["l_svpt"].sum())
